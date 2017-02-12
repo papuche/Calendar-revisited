@@ -3,17 +3,29 @@ import './App.css';
 import logo from './logo.svg';
 import Month from './Month';
 import Arrow from './Arrow';
+import moment from 'moment';
 
+
+let now = moment().format('LLLL');
 
 class App extends Component {
   constructor() {
+    console.log("day: ",moment().date());
+    console.log("weekday: ",moment().format('dddd'));
+    console.log("month: ",moment().month());
+    console.log("year: ",moment().year());
+    console.log("start week",moment().startOf('week'))
     super();
     this.state = {
-      month:0,
+      start:{
+        day: 1,
+        month: 1,
+        weekDay:2
+      }
     };
   }
 
-  months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+  months = [{name:"Janvier", nbOfDays:31}, {name:"Février", nbOfDays:28}, {name:"Mars", nbOfDays:31}, {name:"Avril", nbOfDays:30}, {name:"Mai", nbOfDays:31}, {name:"Juin", nbOfDays:30}, {name:"Juillet", nbOfDays:31}, {name:"Août", nbOfDays:31}, {name:"Septembre", nbOfDays:30}, {name:"Octobre", nbOfDays:31}, {name:"Novembre", nbOfDays:30}, {name:"Décembre", nbOfDays:31}];
 
   nextMonth(nb) {
     return nb === this.months.length-1 ? 0 : nb+1;
@@ -33,15 +45,15 @@ class App extends Component {
         <Arrow className="arrow_box"
           action = {-1}
           onClick={() => this.setState({
-            month: this.updateMonth(this.state.month,-1)
+            month: this.updateMonth(this.state.start.month,-1)
           })}/>
         <Month className="month_box"
           months={this.months} 
-          month={this.state.month}/> 
+          start={this.state.start}/> 
         <Arrow className="arrow_box"
           action = {1}
           onClick={() =>   this.setState({
-            month: this.updateMonth(this.state.month,1)
+            month: this.updateMonth(this.state.start.month,1)
           })}/>
       </div>
     );

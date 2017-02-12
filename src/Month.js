@@ -9,7 +9,7 @@ class Month extends Component {
     return (
       <div className="Month-container">
         <span className="">
-            {this.props.months[this.props.month]}
+            {this.props.months[this.props.start.month].name}
         </span>
         <Week start={3}/>
       </div>
