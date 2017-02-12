@@ -1,22 +1,9 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import logo from './logo.svg';
 import Month from './Month';
+import Arrow from './Arrow';
 
-const months = ["Janvier","Février","Mars","Avril"];
-
-const month = 0;
-
-function updateMonth(nb,sign) {
-  if(sign !== 1) {sign = -1;}
-  return nb += sign;
-}
-
-function Arrow(props) {
-  return (
-    <span className="Calendar_arrow"  onClick={() => props.onClick()}>></span>
-  );
-}
 
 class App extends Component {
   constructor() {
@@ -25,17 +12,37 @@ class App extends Component {
       month:0,
     };
   }
+
+  months = ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"];
+
+  nextMonth(nb) {
+    return nb === this.months.length-1 ? 0 : nb+1;
+  }
+
+  previousMonth(nb) {
+    return nb === 0 ? this.months.length-1 : nb-1;
+  }
+
+  updateMonth(nb,sign) {
+    return sign === 1 ? this.nextMonth(nb):this.previousMonth(nb);
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="Calendar_title">
-          <Arrow onClick={() =>   this.setState({
-            month: updateMonth(this.state.month,1)
+      <div className="App_container">
+        <Arrow 
+          action = {-1}
+          onClick={() => this.setState({
+            month: this.updateMonth(this.state.month,-1)
           })}/>
-          <Month
-            month={months[this.state.month]}/>
-          <Arrow/>
-        </div>
+        <Month
+          months={this.months} 
+          month={this.state.month}/> 
+        <Arrow 
+          action = {1}
+          onClick={() =>   this.setState({
+            month: this.updateMonth(this.state.month,1)
+          })}/>
       </div>
     );
   }

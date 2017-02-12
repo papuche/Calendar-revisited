@@ -23,13 +23,10 @@
   to { transform: rotate(360deg); }
 }
 
-.Calendar_title {
-  display: inline-flex;
-}
-
-.Calendar_arrow {
-  margin-left: 10px;
-  margin-right: 10px;
+.App_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 
