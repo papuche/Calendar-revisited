@@ -30,15 +30,15 @@ class App extends Component {
   render() {
     return (
       <div className="App_container">
-        <Arrow 
+        <Arrow className="arrow_box"
           action = {-1}
           onClick={() => this.setState({
             month: this.updateMonth(this.state.month,-1)
           })}/>
-        <Month
+        <Month className="month_box"
           months={this.months} 
           month={this.state.month}/> 
-        <Arrow 
+        <Arrow className="arrow_box"
           action = {1}
           onClick={() =>   this.setState({
             month: this.updateMonth(this.state.month,1)

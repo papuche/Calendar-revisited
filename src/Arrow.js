@@ -6,7 +6,9 @@ class Arrow extends Component {
 
   render() {
     return (
-        <button className=""  onClick={() => this.props.onClick()}>{this.props.action === -1 ? "<" : ">"}</button>
+      <div className="Arrow-container">
+        <button onClick={() => this.props.onClick()}>{this.props.action === -1 ? "<" : ">"}</button>
+      </div>
     );
   }
 }

@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import './Month.css';
+import Week from './Week';
 
 
 class Month extends Component {
 
   render() {
     return (
-      <div className="">
-        <div className="">
-          <span className="">
+      <div className="Month-container">
+        <span className="">
             {this.props.months[this.props.month]}
-          </span>
-        </div>
+        </span>
+        <Week start={3}/>
       </div>
     );
   }
